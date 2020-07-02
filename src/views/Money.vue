@@ -1,10 +1,12 @@
 <template>
-    <div>Money.Vue</div>
+    <div>Money.Vue
+        <Nav/>
+    </div>
 </template>
 
 <script lang="ts">
     export default {
-        name: 'Money.vue'
+        name: 'Money.vue',
     };
 </script>
 
