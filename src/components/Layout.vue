@@ -23,4 +23,7 @@
         flex-grow: 1;
         overflow: auto;
     }
+    svg{
+        color: #2c3e50;
+    }
 </style>
