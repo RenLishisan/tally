@@ -1,7 +1,7 @@
 <template>
-    <div>Labels.Vue
-        <Nav/>
-    </div>
+    <layout>
+        Labels.Vue
+    </layout>
 </template>
 
 <script lang="ts">
@@ -11,5 +11,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+    
 </style>

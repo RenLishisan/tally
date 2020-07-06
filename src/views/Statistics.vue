@@ -1,7 +1,7 @@
 <template>
-    <div>Statistics.Vue
-    <Nav/>
-    </div>
+    <Layout>
+    Statistics.Vue
+    </Layout>
 </template>
 
 <script lang="ts">
