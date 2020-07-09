@@ -52,6 +52,9 @@
         clear() {
             this.output = '0';
         }
+        ok(){
+            console.log('hi')
+        }
 
     }
 </script>
