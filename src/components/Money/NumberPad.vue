@@ -52,6 +52,7 @@
         clear() {
             this.output = '0';
         }
+
     }
 </script>
 
