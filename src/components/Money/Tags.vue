@@ -28,6 +28,7 @@
             } else {
                 this.selectedTags.push(tag);
             }
+            this.$emit('update:value',this.selectedTags)
         }
 
         create() {
@@ -37,8 +38,6 @@
             } else if (this.dataSource) {
                 this.$emit('update:dataSource',
                     [...this.dataSource, name]);
-
-
             }
         }
     }
