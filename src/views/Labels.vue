@@ -1,33 +1,39 @@
 <template>
     <layout>
         <ol class="tags">
-            <li>
-                <span> 衣 </span>
-                <Icon name="right"/>
-            </li>
-            <li>
-                <span> 食 </span>
-                <Icon name="right"/>
-            </li>
-            <li>
-                <span> 住</span>
-                <Icon name="right"/>
-            </li>
-            <li>
-                <span> 行</span>
+            <li :key="tag.id" v-for="tag in tags">
+                <span>{{tag.name}}</span>
                 <Icon name="right"/>
             </li>
         </ol>
         <div class="createTag-wrapper">
-            <button class="createTag">新建标签</button>
+            <button @click="createTag" class="createTag">新建标签</button>
         </div>
     </layout>
 </template>
 
 <script lang="ts">
-    export default {
-        name: 'Labels',
-    };
+    import Vue from 'vue';
+    import {Component} from 'vue-property-decorator';
+    import tagListModel from '@/models/tagListModel';
+
+    tagListModel.fetch();
+    @Component
+    export default class Labels extends Vue {
+        tags = tagListModel.data;
+
+        createTag() {
+            const name = window.prompt('请输入标签名');
+            if (name) {
+                const message = tagListModel.create(name);
+                if (message === 'duplicated') {
+                    window.alert('这个标签重复啦！');
+                }else if(message === 'success'){
+                    window.alert('标签添加成功！');
+                }
+            }
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
