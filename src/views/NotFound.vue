@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>404</div>
+        <div>主人！你的页面被我不小心弄丢了.../哭</div>
         <div>
             <router-link to="/">点击回到首页</router-link>
         </div>

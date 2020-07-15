@@ -23,7 +23,7 @@ const routes: Array<RouteConfig> = [
         component: Labels
     },
     {
-       path:'/labels/edit',
+       path:'/labels/edit/:id',
        component: EditLabel
     },
     {
