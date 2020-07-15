@@ -4,9 +4,9 @@
             <button @click="create">新增加标签</button>
         </div>
         <ul class="current">
-            <li :class="{selected: selectedTags.indexOf(tag)>=0}" :key="tag"
+            <li :class="{selected: selectedTags.indexOf(tag)>=0}" :key="tag.id"
                 @click="toggle(tag)"
-                v-for="tag in dataSource">{{tag}}
+                v-for="tag in dataSource">{{tag.name}}
             </li>
         </ul>
     </div>
@@ -45,6 +45,7 @@
 
 <style lang="scss" scoped>
     .tags {
+        background: white;
         font-size: 14px;
         padding: 16px;
         flex-grow: 1;
