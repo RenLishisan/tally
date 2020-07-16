@@ -2,9 +2,11 @@
     <div>
         <label class="formItem">
             <span class="name">{{this.fieldName}}</span>
-            <input placeholder="点击输入标签名！"
+            <input :placeholder="placeholder"
+                   :value="value"
+                   @input="onValueChanged($event.target.value)"
                    type="text"
-                   v-model="value">
+                   >
         </label>
     </div>
 </template>
@@ -15,7 +17,7 @@
 
     @Component
     export default class FormItem extends Vue {
-       @Prop({default:''}) value!: string;
+        @Prop({default: ''}) readonly value!: string;
 
         @Prop({required: true}) fieldName!: string;
         @Prop() placeholder?: string;
@@ -24,8 +26,6 @@
         onValueChanged(value: string) {
             this.$emit('update:value', value);
         }
-
-
     }
 </script>
 
@@ -35,6 +35,7 @@
         padding-left: 16px;
         display: flex;
         align-items: center;
+
         .name {
             padding-right: 16px;
         }
