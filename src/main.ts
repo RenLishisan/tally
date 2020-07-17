@@ -13,7 +13,16 @@ Vue.config.productionTip = false;
 Vue.component('Nav', Nav);
 Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
+
 window.tagList = tagListModel.fetch();
+window.createTag =(name: string) =>{
+    const message = tagListModel.create(name);
+    if (message === 'duplicated') {
+        window.alert('这个标签重复啦！');
+    }else if(message === 'success'){
+        window.alert('标签添加成功！');
+    }
+}
 
 
 new Vue({

@@ -18,6 +18,7 @@ type TagListModel = {
     save: () => void;
 }
 
-interface  Window {
+interface Window {
     tagList: Tag[];
+    createTag: (name: string) => void;
 }
