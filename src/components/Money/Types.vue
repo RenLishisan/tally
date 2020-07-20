@@ -14,8 +14,11 @@
 <script lang="ts">
     import Vue from "vue"
     import {Component, Prop,Watch} from 'vue-property-decorator';
+    import Button from '@/components/Button.vue';
 
-    @Component
+    @Component({
+        components:{Button}
+    })
     export default class Types extends Vue {
         @Prop() readonly value!: string;
         selectType(type: string) {

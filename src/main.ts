@@ -15,15 +15,23 @@ Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
 window.tagList = tagListModel.fetch();
-window.createTag =(name: string) =>{
+window.findTag = (id: string) => {
+    return window.tagList.filter(t => t.id === id)[0];
+};
+window.createTag = (name: string) => {
     const message = tagListModel.create(name);
     if (message === 'duplicated') {
         window.alert('这个标签重复啦！');
-    }else if(message === 'success'){
+    } else if (message === 'success') {
         window.alert('标签添加成功！');
     }
-}
-
+};
+window.removeTag = (id: string) => {
+    return tagListModel.remove(id);
+};
+window.updateTag = (id: string, name: string) => {
+    return tagListModel.update(id, name);
+};
 
 new Vue({
     router,
