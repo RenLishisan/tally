@@ -12,7 +12,6 @@ const tagStore = {
         return this.tagList.filter(t => t.id === id)[0];
     },
     createTag(name: string) {
-
         const names = this.tagList.map(item => item.name);
         if (names.indexOf(name) >= 0) {
             window.alert('这个标签重复啦！');
