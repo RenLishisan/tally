@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import clone from '@/lib/clone';
 import createId from '@/lib/createId';
+import router from '@/router';
 
 Vue.use(Vuex);
 
@@ -20,6 +21,38 @@ const store = new Vuex.Store({
         setCurrentTag(state, id: string) {
             state.currentTag = state.tagList.filter(t => t.id === id)[0];
         },
+
+        updateTag(state, payload: { id: string; name: string }) {
+            const {id,name} = payload;
+            const idList = state.tagList.map(item => item.id);
+            if (idList.indexOf(id) >= 0) {
+                const names = state.tagList.map(item => item.name);
+                if (names.indexOf(name) >= 0) {
+                    window.alert('这个标签名已经有啦，换一个吧！')
+                } else {
+                    const tag = state.tagList.filter(item => item.id === id)[0];
+                    tag.name = name;
+                    store.commit('saveTags');
+                }
+            }
+        },
+        removeTag(state,id: string) {
+            let index = -1;
+            for (let i = 0; i < state.tagList.length; i++) {
+                if (state.tagList[i].id === id) {
+                    index = i;
+                    break;
+                }
+            }
+            if(index >= 0){
+                state.tagList.splice(index, 1);
+                store.commit('saveTags');
+                router.back();
+            } else {
+                window.alert('删除失败!');
+            }
+        },
+
         fetchRecords: function (state) {
             state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
         },
