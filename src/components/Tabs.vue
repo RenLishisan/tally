@@ -18,6 +18,8 @@
     dataSource!: DataSourceItem[];
     @Prop(String) readonly value!: string;
     @Prop(String) classPrefix?: string;
+    @Prop({type: String, default: '64px'})
+    height!: string;
 
     liClass(item: DataSourceItem) {
       return {
