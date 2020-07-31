@@ -1,7 +1,7 @@
 <template>
   <layout class-prefix="layout">
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
-    <Types :data-source="recordList"
+    <Tabs :data-source="recordTypeList"
            :value.sync="record.type"/>
     <div class="notes">
       <FormItem @update:value="onUpdateNotes"
@@ -48,7 +48,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  .layout-content {
+ ::v-deep .layout-content {
     display: flex;
     flex-direction: column-reverse;
   }
