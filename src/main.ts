@@ -19,3 +19,7 @@ new Vue({
     store,
     render: h => h(App)
 }).$mount('#app');
+
+if(document.documentElement.clientWidth > 500){
+    window.alert('主人！使用手机打开预览效果更佳哦！')
+}
