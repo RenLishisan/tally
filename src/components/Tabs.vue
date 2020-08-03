@@ -26,7 +26,6 @@
         [this.classPrefix + '-tabs-item']: this.classPrefix,
         selected: item.value === this.value
       };
-
     }
 
     select(item: DataSourceItem) {
@@ -37,10 +36,12 @@
 
 <style lang="scss" scoped>
   .tabs {
-    background: #c4c4c4;
     display: flex;
     text-align: center;
     font-size: 24px;
+    border-radius: 0 0 12px 12px;
+    background: linear-gradient(145deg, #c0ccd4, #e4f3fd);
+    box-shadow:  6px 6px 13px 13px #b9c5cd;
 
     &-item {
       width: 50%;

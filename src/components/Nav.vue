@@ -31,10 +31,15 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
   nav {
-    @extend %outerShadow;
     display: flex;
     flex-direction: row;
     font-size: 12px;
+
+    border-radius: 12px 12px 0 0;
+    background: #d5e3ec;
+    box-shadow:  5px 5px 8px #bbc8d0,
+    -5px -5px 8px #effeff;
+
     > .item {
       padding: 2px 0;
       width: 33.33333%;
@@ -42,6 +47,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
       .icon {
         width: 32px;
         height: 32px;

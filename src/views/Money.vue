@@ -5,7 +5,7 @@
           :value.sync="record.type"/>
     <div class="notes">
       <FormItem :value.sync="record.notes"
-                field-name="备注"
+                field-name="备注："
                 placeholder="记得在这里输入备注嗷！"/>
     </div>
     <Tags @update:value="record.tags =$event"/>
@@ -63,6 +63,12 @@
 
   .notes {
     padding: 12px 0;
+    z-index: 1;
+    border-radius: 12px 12px 12px 12px;
+    background: #d5e3ec;
+    box-shadow: inset 4px 4px 10px #a8b3ba, inset -1px -2px 8px #FFFFFF;
+    position: relative;
+    top: 6px;
   }
 </style>
 
