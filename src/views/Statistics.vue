@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Tabs :data-source="recordTypeList" :value.sync="type" class-prefix="type"/>
-    <ol>
+    <ol v-if="groupedList.length>0">
       <li :key="index" v-for="(group,index) in groupedList">
         <h3 class="title">{{ beautify(group.title) }} <span>￥{{ group.total }}</span></h3>
         <ol>
@@ -14,6 +14,9 @@
         </ol>
       </li>
     </ol>
+    <div class="noResult" v-else>
+      主人当前没有进行记账哦！
+    </div>
   </Layout>
 </template>
 
@@ -22,7 +25,6 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import Tabs from '@/components/Tabs.vue';
-  import intervalList from '@/constants/intervalList';
   import recordTypeList from '@/constants/recordTypeList';
   import dayjs from 'dayjs';
   import clone from '@/lib/clone';
@@ -34,11 +36,10 @@
   export default class Statistics extends Vue {
     get groupedList() {
       const {recordList} = this;
-      if (recordList.length === 0) {return [];}
-
       const newList = clone(recordList)
           .filter(r => r.type === this.type)
           .sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
+      if (newList.length === 0) {return [];}
       type Result = { title: string; total?: number; items: RecordItem[] }[]
       const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
       for (let i = 1; i < newList.length; i++) {
@@ -56,9 +57,10 @@
       return result;
     }
 
-    tagString(tags: string[]) {
-      return tags.length === 0 ? '无' : tags.join(',');
+    tagString(tags: Tag[]) {
+      return tags.length === 0 ? '未添加标签' : tags.map(t=>t.name).join(',');
     }
+
 
     get recordList() {
       return (this.$store.state as RootState).recordList;
@@ -92,6 +94,10 @@
 </script>
 
 <style lang="scss" scoped>
+  .noResult{
+    padding: 16px;
+    text-align: center;
+  }
   %item {
     padding: 8px 16px;
     line-height: 24px;
