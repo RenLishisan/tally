@@ -27,6 +27,7 @@
   import {Component} from 'vue-property-decorator';
   import Tabs from '@/components/Tabs.vue';
   import recordTypeList from '@/constants/recordTypeList';
+  import dayjs from 'dayjs';
 
   @Component({
     components: {Tabs, Tags, FormItem, NumberPad},
@@ -37,6 +38,8 @@
       tags: [], notes: '', type: '-', amount: 0,createdAt:new Date().toISOString()
     };
 
+
+
     get recordList() {
       return this.$store.state.recordList;
     }
@@ -45,14 +48,12 @@
       this.$store.commit('fetchRecords');
     }
 
-    onUpdateNotes(value: string) {
-      this.record.notes = value;
-    }
 
     saveRecord() {
       if (!this.record.tags || this.record.tags.length == 0) {
         return window.alert('最少也得选择一个标签嘛！');
       }
+      console.log(this.record.createdAt);
       this.$store.commit('createRecord', this.record);
       if (this.$store.state.createRecordError === null) {
         window.alert('账单记录成功！');
