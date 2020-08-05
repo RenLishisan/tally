@@ -8,7 +8,14 @@
                 field-name="备注："
                 placeholder="记得在这里输入备注嗷！"/>
     </div>
+
     <Tags @update:value="record.tags =$event"/>
+    <div class="dates">
+      <FormItem :value.sync="record.createdAt"
+                field-name="日期选择："
+                placeholder="记得选择日期呀！"
+                type="date"/>
+    </div>
   </layout>
 </template>
 
@@ -27,7 +34,7 @@
   export default class Money extends Vue {
     recordTypeList = recordTypeList;
     record: RecordItem = {
-      tags: [], notes: '', type: '-', amount: 0
+      tags: [], notes: '', type: '-', amount: 0,createdAt:new Date().toISOString()
     };
 
     get recordList() {
@@ -62,13 +69,23 @@
   }
 
   .notes {
-    padding: 12px 0;
+    padding: 10px 0;
     z-index: 1;
-    border-radius: 12px 12px 12px 12px;
+    border-radius: 12px;
     background: #d5e3ec;
     box-shadow: inset 4px 4px 10px #a8b3ba, inset -1px -2px 8px #FFFFFF;
     position: relative;
     top: 6px;
   }
+  .dates {
+    padding:1px 0;
+    z-index: 1;
+    border-radius:0 0  12px 12px;
+    background: #d5e3ec;
+    box-shadow:  -25px 4px 8px #c0ccd4,
+    4px -4px 8px #eafaff;
+    top: 6px;
+  }
+
 </style>
 
