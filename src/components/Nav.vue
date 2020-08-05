@@ -34,7 +34,6 @@
     display: flex;
     flex-direction: row;
     font-size: 12px;
-
     border-radius: 12px 12px 0 0;
     background: #d5e3ec;
     box-shadow:  5px 5px 8px #bbc8d0,

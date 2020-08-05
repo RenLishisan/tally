@@ -62,12 +62,16 @@
         text-align: center;
         font-size: 16px;
         padding: 12px 16px;
-        background: white;
         display: flex;
         align-items: center;
         justify-content: space-between;
+      border-radius:0 0 12px 12px;
+      background: #d5e3ec;
+      box-shadow:  8px 8px 16px #c0ccd4,
+      -8px -8px 16px #eafaff;
 
         > .title {
+
         }
 
         .leftIcon {
@@ -82,8 +86,11 @@
     }
 
     .form-wrapper {
-        background: white;
         margin-top: 8px;
+      border-radius: 8px;
+      background: #d5e3ec;
+      box-shadow: inset 8px 8px 16px #c0ccd4,
+      inset -8px -8px 16px #eafaff;
     }
 
     .button-wrapper {
