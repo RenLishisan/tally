@@ -1,7 +1,11 @@
 <template>
   <Layout>
-    <Tabs :data-source="recordTypeList" :value.sync="type" class-prefix="type"/>
-    <ol v-if="groupedList.length>0">
+    <Tabs :data-source="recordTypeList"
+          :value.sync="type"/>
+    <div class="chart-wrapper" ref="chartWrapper">
+      <ECharts :options="chartOptions" class="chart"/>
+    </div>
+    <ol class="left" v-if="groupedList.length>0">
       <li :key="index" v-for="(group,index) in groupedList">
         <h3 class="title">{{ beautify(group.title) }} <span>￥{{ group.total }}</span></h3>
         <ol>
@@ -29,11 +33,18 @@
   import dayjs from 'dayjs';
   import clone from '@/lib/clone';
 
+  const ECharts: any = require('vue-echarts').default;
+  import 'echarts/lib/chart/line';
+  import 'echarts/lib/component/polar';
+  import _ from 'lodash';
+  import day from 'dayjs';
+
 
   @Component({
-    components: {Tabs}
+    components: {Tabs, ECharts}
   })
   export default class Statistics extends Vue {
+
     get groupedList() {
       const {recordList} = this;
       const newList = clone(recordList)
@@ -57,13 +68,60 @@
       return result;
     }
 
+    get chartOptions() {
+      const today = new Date();
+      const array = [];
+      for (let i = 0; i <= 29; i++) {
+        const dateString = day(today)
+            .subtract(i, 'day').format('YYYY-MM-DD');
+        const found = _.find(this.recordList, {
+          createdAt: dateString
+          });
+        array.push({
+          date: dateString, value: found ? found.amount : 0
+        });
+      }
+      const keys = array.map(item => item.date);
+      const values = array.map(item => item.value)
+      return {
+        itemStyle: {color: 'rgb(176,213,223)'},
+        lineStyle: {color: 'rgb(34,162,195)'},
+
+        grid: {
+          left: 0,
+          right: 0,
+          top: 0
+
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号', '17号', '18号', '19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号']
+        },
+        yAxis: {
+          type: 'value',
+          show: false
+        },
+        series: [{
+          data: values,
+          type: 'line',
+          areaStyle: {}
+        }]
+      };
+    }
+
     tagString(tags: Tag[]) {
-      return tags.length === 0 ? '未添加标签' : tags.map(t=>t.name).join(',');
+      return tags.length === 0 ? '未添加标签' : tags.map(t => t.name).join(',');
     }
 
 
     get recordList() {
       return (this.$store.state as RootState).recordList;
+    }
+
+    mounted() {
+      const div = (this.$refs.chartWrapper as HTMLDivElement);
+      div.scrollLeft = div.scrollWidth;
     }
 
     beautify(string: string) {
@@ -78,10 +136,9 @@
       } else if (day.isSame(now, 'year')) {
         return day.format('MM月D日');
       } else {
-        return day.format('YYY年MM月D日');
+        return day.format('YYYY年MM月D日');
       }
     }
-
 
     beforeCreate() {
       this.$store.commit('fetchRecords');
@@ -94,10 +151,29 @@
 </script>
 
 <style lang="scss" scoped>
-  .noResult{
+  .chart {
+    width: 400%;
+
+    &-wrapper {
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+
+  .noResult {
+    border-radius: 13px;
+    background: #d5e3ec;
+    box-shadow:  6px 6px 11px #b5c1c9,
+    -6px -6px 11px #f5ffff;
     padding: 16px;
     text-align: center;
+    margin: 50px;
   }
+
   %item {
     padding: 8px 16px;
     line-height: 24px;
@@ -113,11 +189,14 @@
   }
 
   .title {
+    border-radius: 8px;
+    background: #d5e3ec;
+    box-shadow:  6px 6px 13px #b5c1c9,
+    -6px -6px 13px #f5ffff;
     @extend %item;
   }
 
   .record {
-    background: white;
     @extend %item
   }
 
@@ -137,6 +216,9 @@
     .interval-tabs-item {
       height: 48px;
     }
+  }
+  .left{
+    margin: 10px;
   }
 
 

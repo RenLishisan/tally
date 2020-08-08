@@ -51,6 +51,7 @@
       align-items: center;
       position: relative;
 
+
       &.selected::after {
         content: '';
         position: absolute;

@@ -31,6 +31,7 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
   nav {
+    @extend %outerShadow;
     display: flex;
     flex-direction: row;
     font-size: 12px;
@@ -38,6 +39,8 @@
     background: #d5e3ec;
     box-shadow:  5px 5px 8px #bbc8d0,
     -5px -5px 8px #effeff;
+    z-index: 10;
+
 
     > .item {
       padding: 2px 0;
