@@ -2,9 +2,9 @@
   <Layout>
     <Tabs :data-source="recordTypeList"
           :value.sync="type"/>
-    <div class="chart-wrapper" ref="chartWrapper">
-      <ECharts :options="chartOptions" class="chart"/>
-    </div>
+<!--    <div class="chart-wrapper" ref="chartWrapper">-->
+<!--      <ECharts :options="chartOptions" class="chart"/>-->
+<!--    </div>-->
     <ol class="left" v-if="groupedList.length>0">
       <li :key="index" v-for="(group,index) in groupedList">
         <h3 class="title">{{ beautify(group.title) }} <span>￥{{ group.total }}</span></h3>
