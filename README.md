@@ -1,29 +1,42 @@
-# morney
+# 👍十三记账-本地版V1.0
+## 😃简介
+> 🧐项目作者：[荏狸十三](https://www.zhihu.com/people/renlishisan)
+* 这个记账项目属于第一版，也是我学vue做的第一个项目，小问题还是比较多的，所以大家看看就好了🤪
+* V1.0版本发布前的6样式属于css裸奔，没有加任何的效果。1.0版本发布之后更新了新的css样式，主要是围绕着去年特别的火的`“新拟态”`风格。
+* 新拟态风格主要是依靠`box-shadow`调整它的阴影，在扁平化和投影两个风格之间就是`新拟态`风格。
+* 后续随着我继续深入的学习，还需继续更新优化此项目💪
 
-## Project setup
-```
-npm install
-```
+  👉 [点击在线预览本项目](http://renlishisan.gitee.io/tally-website)
+  👉 [点击进入开源源代码仓库](https://gitee.com/RenLishisan/tally)
+### 🤓项目描述
+* 十三记账V1.0版本是一款极简的记账应用，也是一款基于`Vue`、`VueRouter`、`Vuex`、`TypeScript`的单页面应用。
+* 该项目由本人独立设计及实现，源代码几乎完全使用`TypeScript`实现，用到了`装饰器`等语法
+### 🧐应用功能介绍
+**记账页面**
+* 👍选择记账日期
+* 👍记账标签选择
+* 👍新增标签
+* 👍记账备注填写
+* 👍记账收入支出切换
+* 👍记账键盘以及展示金额
+* 👍新拟态风格
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**标签页面**
+* 👍展示已有标签
+* 👍新建标签
+* 👍显示标签图标
+* 👍编辑&删除标签
+* 👍新建标签
+* 👍新拟态风格
 
-### Compiles and minifies for production
-```
-npm run build
-```
+**统计页面**
+* 👍显示支出&收入记账记录
+* 👍分类显示“今天”“昨天”“前天”以及记账日期
+* 👎 ~~可视化数据展示遇到一点小问题暂时删除~~
+* 👍新拟态风格
+### 🤝版权声明
+> 👮十三记账项目V1.0版本，`完全免费开源`给所有学习前端的学习者,允许二次创作。无需作者荏狸十三授权，开放Copy。
+* 注意：本项目虽然完全开源免费提供给大家学习使用，但是不得出现出售该项目等违规商业现象。
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 🧙拥抱开源，拥抱世界，期待未来！
+>如果觉得这个项目还不错，请麻烦上面给我点一下`Star` 👆 ,在学习或使用当中遇到问题欢迎来我的知乎找我或者在项目地下留言🤓
